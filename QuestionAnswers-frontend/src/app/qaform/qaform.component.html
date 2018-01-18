@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="margin-20" style="text-align:center">
+            <h1 style="color:green">Question Answer Dataset</h1>
+          </div><br>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="addNewQuestionAnswer(myForm.value)">
+        <div class="form-group">
+          <label>AricleId</label>
+          <input type="text" [readonly]="true" class="form-control" formControlName="articleId" style="width:150px;">
+          <small *ngIf="!myForm.controls.articleId.valid" class="text-danger">
+              ArticleID is required (minimum 5 characters).
+            </small> <br>
+            <label>Context</label>
+          <textarea [readonly]="true" class="form-control" formControlName="context" style="margin: 2px 0px 2px 2px; width: 1137px; height: 100px;" class="form-control" placeholder="please enter context here ..."
+          required minlength="5"></textarea>
+          <small *ngIf="!myForm.controls.context.valid" class="text-danger">
+            Context is required (minimum 5 characters).
+          </small>
+        </div>
+
+<!--Question Answer Data-->
+        <div formArrayName="qas">
+          <div *ngFor="let qa of myForm.controls.qas.controls; let i=index" class="panel panel-default">
+            <div class="panel-heading">
+              <span>QuestionAnswer {{i + 1}}</span>
+              <span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm.controls.qas.controls.length > 1" (click)="removeQuestionAnswer(i)"></span>
+            </div>
+            <div class="panel-body" [formGroupName]="i">
+              <div class="form-group">
+                <label>question</label>
+                <input type="text" class="form-control" formControlName="question">
+              </div>
+<!-- Add New Answer -->
+
+              <div class="margin-20">
+                <a (click)="addAnswer(i)" style="cursor: default">
+                  Add Answer
+                </a>
+              </div>
+      
+
+<!-- Start of the  Answer Block -->
+              <div formArrayName="answers">
+                <div *ngFor=" let ans of qa.controls['answers'].controls; let j=index" class ="panel panel-default">
+                    <div class="panel-heading">
+                        <span>Answer {{j + 1}}</span>
+                        <span class="glyphicon glyphicon-remove pull-right" *ngIf="qa.controls['answers'].controls.length > 1" (click)="removeAnswer(i,j)"></span>
+                      </div>
+                  <div class="panel-body" [formGroupName]="j">
+                    <div class="form-group  col-xs-10" >
+                      <label>answer</label>
+                      <input type="text" class="form-control" formControlName="text">
+                    </div>
+                    <div class="form-group  col-xs-2">
+                      <label>answer start</label>
+                      <input type="number" class="form-control" formControlName="answer_start">
+                    </div>
+                  </div> 
+                </div>
+              </div> 
+<!-- End of the  Answer Block -->
+            </div>
+          </div>
+        </div>
+
+<!-- Add New Question Answer -->
+        <div class="margin-20">
+          <a (click)="addQuestionAnswer()" style="cursor: default">
+            Add Question Answer
+          </a>
+        </div>
+
+        <div class="margin-20">
+          <button type="submit"  style="margin:5px;" [routerLink]="['']" class="btn btn-warning pull-right">Home</button>
+          <button type="submit" style="margin:5px;" class="btn btn-primary pull-right" [disabled]="!myForm.valid" >Submit</button> 
+        </div>
+        <div class="clearfix"></div>
+
+<!-- Show Valid Form -->
+
+        <!-- <div class="margin-20">
+          <div>myForm details:-</div>
+          <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+          <pre>form value: <br>{{myForm.value | json}}</pre>
+        </div> -->
+
+      </form>
+    </div>
+  </div>
+</div>

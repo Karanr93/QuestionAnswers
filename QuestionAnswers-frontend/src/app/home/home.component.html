@@ -1,0 +1,65 @@
+<style>
+
+.iffyTip {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    
+}
+.hideText2{
+  max-width:200px;
+} 
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12" align="center">
+      <div class="margin-20" style="text-align:center">
+        <h1 style="color:green">Question Answer Dataset</h1>
+      </div><br>
+      <form [formGroup]="homeForm" novalidate (ngSubmit)="contextList(homeForm.value)">
+        <div class="form-group">
+          <label>AricleId</label>
+          <input type="text" class="form-control" formControlName="articleId" style="width:150px;">
+          <small *ngIf="!homeForm.controls.articleId.valid" class="text-danger">
+              ArticleID is required (minimum 5 characters).
+            </small> <br>
+            <div class="margin-20">
+              <button type="submit"  class="btn btn-primary" [disabled]="!homeForm.valid">Show Contexts</button>
+              <button type="submit"  [routerLink]="['/new']" class="btn btn-primary">New Question Answer</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+      </form>
+      <br><br><br><br><br>
+      <div class="panel panel-default" *ngIf="showContextListDiv">
+          <div class="panel-heading"><span class="lead">List of Contexts </span></div>
+          <div class="tablecontainer" >
+          <div id="list" class="row">
+  
+          <div class="table-responsive col-md-12" >
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th>ArticleId</th>
+                        <th>ContextId</th>
+                        <th>Context</th>
+                        <th class="actions">Actions</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    <tr *ngFor="let qa of questionAnswers">
+                        <td style="width:10%">{{qa.articleId}}</td>
+                        <td style="width:30%">{{qa.contextId}}</td>
+                        <td style="width:40%" class="iffyTip hideText2">{{qa.context}} </td>
+                        <td style="width:20%" class="actions">
+                            <a  class="btn btn-success btn-xs" (click)="addQuestionAnswer(qa)">Add Question Answer</a>
+                            <a  class="btn btn-success btn-xs" (click)="viewQuestionAnswer(qa)">View Details</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+      </div> <!-- /#list -->
+  </div>
+</div>
