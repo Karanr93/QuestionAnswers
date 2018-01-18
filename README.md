@@ -1,5 +1,5 @@
 # QuestionAnswers
-Question Answer Form Application That can be used to generate SQuAD like Dataset
+Question Answer Form Application That can be used to generate SQuAD like Dataset ,
 Front-end is done using Angular2 
 And Backend is done using Springboot integrated with MongoDB.
 Once all the data is entered you can aggrgate all the data set using below Query
