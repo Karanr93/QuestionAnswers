@@ -14,22 +14,23 @@
 <div class="container">
   <div class="row">
         <div class="panel panel-primary">
-                <div class="panel-heading">Question Answer Dataset</div>
-                <div class="panel-body">
-      <form [formGroup]="homeForm"  class="form-inline" novalidate (ngSubmit)="contextList(homeForm.value)">
-        <div class="form-group mb-2">
-          <label>AricleId : </label>
-          <input type="text" class="form-control" formControlName="articleId" style="width:150px;" required>
-           </div>
-            <div class="form-group mx-sm-3 mb-2">
-              <button type="submit"  class="btn btn-primary" [disabled]="!homeForm.valid">Show Contexts</button>
-              <button type="submit"  [routerLink]="['/new']" class="btn btn-primary">New Question Answer</button>
-            </div>
-            <div class="clearfix"></div>
-       </form>
+        <div class="panel-heading">Question Answer Dataset</div>
+        <div class="panel-body">
+            <form [formGroup]="homeForm"  class="form-inline" novalidate (ngSubmit)="contextList(homeForm.value)">
+                <div class="form-group mb-2">
+                <label>AricleId : </label>
+                <input type="text" class="form-control" formControlName="articleId" style="width:150px;" required>
+                </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                    <button type="submit"  class="btn btn-primary" [disabled]="!homeForm.valid">Show Contexts</button>
+                    <button type="submit"  [routerLink]="['/new']" class="btn btn-primary">New Question Answer</button>
+                    </div>
+                    <div class="clearfix"></div>
+            </form>
+        </div></div>    
       <br><br>
-      <div class="panel panel-default" *ngIf="showContextListDiv">
-          <div class="panel-heading"><span class="lead">List of Contexts </span></div>
+      <div class="panel panel-primary" *ngIf="showContextListDiv">
+          <div class="panel-heading">List of Contexts</div>
           <div class="tablecontainer" >
           <div id="list" class="row">
   
